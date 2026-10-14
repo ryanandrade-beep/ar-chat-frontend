@@ -102,3 +102,48 @@ textarea.entrada { height: auto; padding: 10px 12px; resize: vertical; min-heigh
 .aba.ativa .n { background: var(--marca); color: #fff; }
 .modal-fundo { position: fixed; inset: 0; background: rgba(10, 20, 15, .45); display: grid; place-items: center; padding: 16px; z-index: 20; }
 .modal { width: min(520px, 100%); max-height: 90vh; overflow: auto; }
+
+.auth { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; background: var(--pagina); }
+.auth.escura { background: radial-gradient(120% 120% at 80% 0%, #1c3a2e 0%, #0f1d17 55%, #0a140f 100%); }
+.auth-form { display: flex; flex-direction: column; justify-content: center; padding: 40px clamp(16px, 6vw, 96px); gap: 22px; }
+.auth-form .marca { color: var(--tinta); padding: 0; }
+.auth.escura .auth-form .marca { color: #fff; }
+.auth-cartao { background: var(--superficie); border-radius: 18px; padding: 36px 40px; box-shadow: 0 20px 60px rgba(0,0,0,.25); width: min(480px, 100%); min-width: 0; display: grid; gap: 18px; }
+.auth-titulo { font-size: 30px; letter-spacing: -.02em; }
+.auth-sub { margin: 4px 0 0; color: var(--tinta-3); }
+.auth-lado { display: flex; flex-direction: column; justify-content: center; padding: 48px clamp(24px, 6vw, 96px); color: #dfe9e3; gap: 18px; background: radial-gradient(120% 120% at 80% 0%, #1c3a2e 0%, #0f1d17 55%, #0a140f 100%); }
+.auth.escura .auth-lado { background: transparent; }
+.auth-lado h2 { color: #fff; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -.02em; }
+.auth-lado h2 em { color: #4fd1a1; font-style: normal; }
+.auth-lado .traco { width: 56px; height: 3px; background: #4fd1a1; border-radius: 3px; }
+.auth-etiqueta { display: inline-block; align-self: flex-start; background: rgba(79,209,161,.15); color: #7fe3bd; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+.auth-passos { display: grid; gap: 10px; max-width: 460px; }
+.auth-passo { display: flex; gap: 12px; align-items: center; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); border-radius: 12px; padding: 12px 14px; }
+.auth-passo b { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(79,209,161,.2); color: #7fe3bd; font-size: 12px; flex: none; }
+.campo-icone { position: relative; }
+.campo-icone > svg:first-child { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--tinta-3); pointer-events: none; }
+.campo-icone .entrada { padding-left: 40px; height: 46px; background: #fff; border-radius: 12px; }
+.campo-icone .olho { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: 0; background: none; cursor: pointer; color: var(--tinta-3); padding: 6px; }
+.botao.pilula { border-radius: 999px; height: 48px; font-size: 15px; }
+.links-auth { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; text-align: center; color: var(--tinta-3); font-size: 13px; }
+.etapas { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--tinta-3); }
+.etapa { display: flex; align-items: center; gap: 8px; }
+.etapa b { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--linha-forte); display: grid; place-items: center; font-size: 12px; }
+.etapa.ativa { color: var(--tinta); font-weight: 600; }
+.etapa.ativa b, .etapa.feita b { background: var(--marca); border-color: var(--marca); color: #fff; }
+.etapas .linha-etapa { width: 28px; height: 1px; background: var(--linha-forte); }
+.prefixo-telefone { display: flex; }
+.prefixo-telefone span { display: grid; place-items: center; padding: 0 12px; border: 1px solid var(--linha-forte); border-right: 0; border-radius: 12px 0 0 12px; background: var(--campo); font-weight: 600; white-space: nowrap; }
+.prefixo-telefone .entrada { border-radius: 0 12px 12px 0; height: 46px; background: #fff; }
+.opcoes-canal { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.opcao-canal { border: 1px solid var(--linha-forte); border-radius: 12px; padding: 12px; display: flex; gap: 10px; align-items: center; cursor: pointer; background: #fff; text-align: left; }
+.opcao-canal.ativa { border-color: var(--marca); box-shadow: 0 0 0 3px var(--marca-suave); }
+@media (max-width: 960px) {
+  .auth { grid-template-columns: 1fr; }
+  .auth-lado { display: none; }
+  .auth-form { padding: 24px 14px; }
+  .auth-cartao { padding: 24px 18px; width: 100%; }
+  .auth-titulo { font-size: 26px; }
+  .botao, .entrada { min-width: 0; }
+  .etapas .linha-etapa { width: 14px; }
+}
