@@ -1,6 +1,10 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ProvedorSessao } from './sessao';
+import { Topo } from './components/ui';
+
 const menu = ['Atendimento', 'Contatos', 'Campanhas', 'Relatórios'];
 
-export default function App() {
+function Inicio() {
   return (
     <div className="app">
       <aside className="menu">
@@ -13,12 +17,7 @@ export default function App() {
         ))}
       </aside>
       <main className="conteudo">
-        <header className="topo">
-          <div>
-            <h1>Atendimento</h1>
-            <p>Conversas com os clientes pelo WhatsApp</p>
-          </div>
-        </header>
+        <Topo titulo="Atendimento" subtitulo="Conversas com os clientes pelo WhatsApp" />
         <section className="pagina">
           <div className="cartao">
             <div className="cartao-corpo">Em construção.</div>
@@ -26,5 +25,17 @@ export default function App() {
         </section>
       </main>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ProvedorSessao>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<Inicio />} />
+        </Routes>
+      </BrowserRouter>
+    </ProvedorSessao>
   );
 }
