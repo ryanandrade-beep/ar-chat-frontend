@@ -11,3 +11,5 @@ export interface Cliente {
 }
 
 export interface Operador { id: string; name: string; email: string; active: boolean; createdAt: string; owner?: boolean }
+export interface Destinatario { id: string; type: 'contact' | 'group'; name: string; phone: string; acceptsMarketing: boolean }
+export interface Departamento { id: string; name: string; active: boolean }
