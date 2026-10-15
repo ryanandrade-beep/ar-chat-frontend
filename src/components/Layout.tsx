@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
-  LayoutDashboard, LogOut, Menu, MessagesSquare, UserCog, Wallet,
+  Bot, ContactRound, LayoutDashboard, LogOut, Menu, MessagesSquare, UserCog, Users, Wallet,
 } from 'lucide-react';
 import { api, dataHora, reais } from '../api';
 import { useSessao } from '../sessao';
@@ -122,10 +122,18 @@ export function Layout() {
           <span className="marca-icone"><MessagesSquare size={18} /></span>
           A&amp;R Chat
         </div>
+        {perfil !== 'admin' && (
+          <>
+            <div className="menu-secao">Atendimento</div>
+            <Item para="/contatos" icone={<ContactRound size={18} />}>Contatos e grupos</Item>
+          </>
+        )}
         {perfil === 'client' && (
           <>
             <div className="menu-secao">Gestão</div>
             <Item para="/dashboard" icone={<LayoutDashboard size={18} />}>Dashboard</Item>
+            <Item para="/operadores" icone={<Users size={18} />}>Operadores</Item>
+            <Item para="/departamentos" icone={<Bot size={18} />}>Departamentos e URA</Item>
           </>
         )}
         <div className="menu-rodape">
