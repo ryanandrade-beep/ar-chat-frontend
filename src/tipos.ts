@@ -9,3 +9,5 @@ export interface Cliente {
   id: string; name: string; documentId: string; documentType: string; planType: 'prepaid' | 'postpaid';
   balance: number; limit: number; monthlyUsage: number; available: number; active: boolean; createdAt: string;
 }
+
+export interface Operador { id: string; name: string; email: string; active: boolean; createdAt: string; owner?: boolean }
