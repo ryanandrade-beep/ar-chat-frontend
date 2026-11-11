@@ -147,3 +147,33 @@ textarea.entrada { height: auto; padding: 10px 12px; resize: vertical; min-heigh
   .botao, .entrada { min-width: 0; }
   .etapas .linha-etapa { width: 14px; }
 }
+
+.barra { display: flex; justify-content: flex-end; align-items: center; gap: 10px; padding: 10px 28px; background: var(--superficie); border-bottom: 1px solid var(--linha); position: sticky; top: 0; z-index: 5; }
+.chip-saldo { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--linha-forte); background: var(--marca-suave); color: var(--marca-escura); border-radius: 999px; padding: 6px 12px; font-weight: 700; cursor: pointer; }
+.chip-saldo.baixo { background: var(--alerta-fundo); color: var(--alerta); border-color: #ecd59c; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: #d7e4dd; color: var(--marca-escura); display: grid; place-items: center; font-weight: 700; flex: none; }
+.chip-usuario { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 4px 10px 4px 4px; border: 1px solid var(--linha); background: #fff; cursor: pointer; }
+.chip-usuario .avatar { width: 28px; height: 28px; font-size: 11px; }
+.menu-flutuante { position: absolute; right: 28px; top: 52px; background: #fff; border: 1px solid var(--linha); border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.12); min-width: 220px; padding: 6px; display: grid; }
+.menu-flutuante button, .menu-flutuante a { text-align: left; border: 0; background: none; padding: 9px 10px; border-radius: 8px; cursor: pointer; color: var(--tinta); text-decoration: none; display: flex; gap: 8px; align-items: center; }
+.menu-flutuante button:hover, .menu-flutuante a:hover { background: var(--campo); }
+.botao-redondo { width: 40px; height: 40px; border-radius: 50%; border: 0; background: none; cursor: pointer; display: grid; place-items: center; color: var(--tinta-2); flex: none; }
+.botao-redondo:hover { background: var(--campo); }
+.botao-menu { display: none; }
+@media (max-width: 960px) {
+  .app { grid-template-columns: 1fr; }
+  .menu { position: fixed; inset: 0 auto 0 0; width: 270px; height: 100vh; z-index: 30; transform: translateX(-105%); transition: transform .2s; overflow-y: auto; }
+  .menu.aberto { transform: none; box-shadow: 0 0 0 100vmax rgba(10, 20, 15, .45); }
+  .botao-menu { display: grid; margin-right: auto; }
+  .barra { padding: 8px 12px; gap: 8px; }
+  .barra .chip-usuario span:last-child { display: none; }
+  .chip-saldo { padding: 6px 10px; font-size: 13px; }
+  .topo { flex-direction: column; align-items: stretch; padding: 14px 16px; }
+  .topo .acoes { justify-content: stretch; }
+  .topo .acoes > * { flex: 1 1 auto; }
+  .pagina { padding: 14px 12px; gap: 12px; }
+  .cartao { overflow-x: auto; }
+  .grade { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; gap: 10px; }
+  .indicador strong { font-size: 19px; }
+  .linha-form { grid-template-columns: 1fr !important; }
+}
