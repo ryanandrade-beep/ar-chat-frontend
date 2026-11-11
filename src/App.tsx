@@ -8,6 +8,9 @@ import { EsqueciSenha } from './pages/EsqueciSenha';
 import { Termos } from './pages/Termos';
 import { Painel } from './pages/Painel';
 import { MinhaConta } from './pages/MinhaConta';
+import { Contatos } from './pages/Contatos';
+import { Operadores } from './pages/Operadores';
+import { Departamentos } from './pages/Departamentos';
 
 function Inicio() {
   const { sessao } = useSessao();
@@ -25,7 +28,7 @@ function Inicio() {
 
 function Rotas() {
   const { sessao } = useSessao();
-  const inicio = sessao?.perfil === 'admin' ? '/admin/minha-conta' : sessao?.perfil === 'client' ? '/dashboard' : '/inicio';
+  const inicio = sessao?.perfil === 'admin' ? '/admin/minha-conta' : sessao?.perfil === 'client' ? '/dashboard' : '/contatos';
 
   if (!sessao) {
     return (
@@ -44,7 +47,14 @@ function Rotas() {
       <Route path="/termos" element={<Termos />} />
       <Route element={<Layout />}>
         <Route path="/inicio" element={<Inicio />} />
-        {sessao.perfil === 'client' && <Route path="/dashboard" element={<Painel />} />}
+        {sessao.perfil !== 'admin' && <Route path="/contatos" element={<Contatos />} />}
+        {sessao.perfil === 'client' && (
+          <>
+            <Route path="/dashboard" element={<Painel />} />
+            <Route path="/operadores" element={<Operadores />} />
+            <Route path="/departamentos" element={<Departamentos />} />
+          </>
+        )}
         {sessao.perfil === 'admin' && <Route path="/admin/minha-conta" element={<MinhaConta />} />}
       </Route>
       <Route path="*" element={<Navigate to={inicio} replace />} />
