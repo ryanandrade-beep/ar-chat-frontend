@@ -1,30 +1,73 @@
-const menu = ['Atendimento', 'Contatos', 'Campanhas', 'Relatórios'];
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { ProvedorSessao, useSessao } from './sessao';
+import { Topo } from './components/ui';
+import { Layout } from './components/Layout';
+import { Login } from './pages/Login';
+import { Cadastro } from './pages/Cadastro';
+import { EsqueciSenha } from './pages/EsqueciSenha';
+import { Termos } from './pages/Termos';
+import { Painel } from './pages/Painel';
+import { MinhaConta } from './pages/MinhaConta';
+import { Contatos } from './pages/Contatos';
+import { Operadores } from './pages/Operadores';
+import { Departamentos } from './pages/Departamentos';
+
+function Inicio() {
+  const { sessao } = useSessao();
+  return (
+    <>
+      <Topo titulo={`Olá, ${sessao?.nome}`} subtitulo={sessao?.workspace} />
+      <section className="pagina">
+        <div className="cartao">
+          <div className="cartao-corpo">Em construção.</div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function Rotas() {
+  const { sessao } = useSessao();
+  const inicio = sessao?.perfil === 'admin' ? '/admin/minha-conta' : sessao?.perfil === 'client' ? '/dashboard' : '/contatos';
+
+  if (!sessao) {
+    return (
+      <Routes>
+        <Route path="/entrar" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+        <Route path="/termos" element={<Termos />} />
+        <Route path="*" element={<Navigate to="/entrar" replace />} />
+      </Routes>
+    );
+  }
+
+  return (
+    <Routes>
+      <Route path="/termos" element={<Termos />} />
+      <Route element={<Layout />}>
+        <Route path="/inicio" element={<Inicio />} />
+        {sessao.perfil !== 'admin' && <Route path="/contatos" element={<Contatos />} />}
+        {sessao.perfil === 'client' && (
+          <>
+            <Route path="/dashboard" element={<Painel />} />
+            <Route path="/operadores" element={<Operadores />} />
+            <Route path="/departamentos" element={<Departamentos />} />
+          </>
+        )}
+        {sessao.perfil === 'admin' && <Route path="/admin/minha-conta" element={<MinhaConta />} />}
+      </Route>
+      <Route path="*" element={<Navigate to={inicio} replace />} />
+    </Routes>
+  );
+}
 
 export default function App() {
   return (
-    <div className="app">
-      <aside className="menu">
-        <div className="marca">
-          <span className="marca-icone">A&R</span>
-          A&R Chat
-        </div>
-        {menu.map((item, i) => (
-          <a key={item} href="#" className={`menu-item${i === 0 ? ' ativo' : ''}`}>{item}</a>
-        ))}
-      </aside>
-      <main className="conteudo">
-        <header className="topo">
-          <div>
-            <h1>Atendimento</h1>
-            <p>Conversas com os clientes pelo WhatsApp</p>
-          </div>
-        </header>
-        <section className="pagina">
-          <div className="cartao">
-            <div className="cartao-corpo">Em construção.</div>
-          </div>
-        </section>
-      </main>
-    </div>
+    <ProvedorSessao>
+      <BrowserRouter>
+        <Rotas />
+      </BrowserRouter>
+    </ProvedorSessao>
   );
 }
